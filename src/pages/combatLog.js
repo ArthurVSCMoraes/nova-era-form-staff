@@ -127,4 +127,4 @@ const FormAproveResult = styled.div`
   padding: 0% 25% 0% 25%;
 `;
 
-export default combatLog
+export default CombatLog

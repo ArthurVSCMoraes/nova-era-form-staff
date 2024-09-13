@@ -4,7 +4,7 @@ import { useState } from "react";
 import NavBar from '@/components/navBar';
 
 
-function combatLog() {
+function CombatLog() {
 
     const [selectedStaff, setSelectedStaff] = useState("");
     const [judgment, setJudgment] = useState("");

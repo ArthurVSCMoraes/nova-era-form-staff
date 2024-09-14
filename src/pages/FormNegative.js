@@ -2,6 +2,8 @@ import { useState, useRef } from "react";
 import styled from "styled-components";
 import NavBar from "../components/navBar";
 import staffResp from "../data/staffResp";
+import TextBar from "@/components/TextBar";
+
 export default function FormNegative() {
 
     const [selectedStaff, setSelectedStaff] = useState("");
@@ -77,6 +79,7 @@ export default function FormNegative() {
                     <ButtonToCopy onClick={copyToClipboard}>Copiar Formulário</ButtonToCopy>
                 </FormAproveResult>
             </MainDiv>
+            <TextBar filter='denied' />
         </>
     );
 }

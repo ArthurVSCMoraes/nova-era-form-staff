@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import NavBar from "@/components/navBar";
 import staffResp from "../data/staffResp";
 function CombatLog() {
@@ -11,6 +11,22 @@ function CombatLog() {
     const [whistleblower, setWhistleblower] = useState("");
     const [id, setId] = useState("");
     const [cdsDisconnect, setCdsDisconnect] = useState("");
+
+    // Refs para acessar o conteúdo da tag <p>
+    const pRef = useRef(null);
+
+    // Função para copiar o texto
+    const copyToClipboard = async () => {
+        try {
+            if (pRef.current) {
+                const textToCopy = pRef.current.innerText;
+                await navigator.clipboard.writeText(textToCopy);
+                console.log('Texto copiado para a área de transferência');
+            }
+        } catch (err) {
+            console.log('Falha ao copiar o texto', err);
+        }
+    };
 
     const handleJudgmentChange = (event) => setJudgment(event.target.value);
     const handleTicketNumberChange = (event) =>
@@ -26,99 +42,104 @@ function CombatLog() {
         <div>
             <NavBar />
             <TiltePage>Formulário para CombatLogging</TiltePage>
-            <FormDiv>
-                <form>
-                    <FormGroup>
-                        <LabelForm>CDS</LabelForm>
-                        <Input
-                            type="text"
-                            value={cdsDisconnect}
-                            onChange={handleCdsDisconnectChange}
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <LabelForm>Resolvido por:</LabelForm>
-                        <SelectInput
-                            id="staff"
-                            name="staffDiscId"
-                            onChange={handleStaffChange}
-                            value={selectedStaff}
-                        >
-                            <option value="">Selecione</option>
-                            {staffResp.map((staff) => (
-                                <option key={staff.id} value={staff.id}>
-                                    {staff.name}
-                                </option>
-                            ))}
-                        </SelectInput>
-                    </FormGroup>
-                    <FormGroup>
-                        <LabelForm>JULGAMENTO</LabelForm>
-                        <Input
-                            type="text"
-                            value={judgment}
-                            onChange={handleJudgmentChange}
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <LabelForm>Número do Ticket</LabelForm>
-                        <Input
-                            type="text"
-                            value={ticketNumber}
-                            onChange={handleTicketNumberChange}
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <LabelForm>Denunciante</LabelForm>
-                        <Input
-                            type="text"
-                            value={whistleblower}
-                            onChange={handleWhistleblowerChange}
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <LabelForm>Denunciado</LabelForm>
-                        <Input type="text" value={id} onChange={handleIdChange} />
-                    </FormGroup>
-                    <FormGroup>
-                        <LabelForm>Prova</LabelForm>
-                        <Input
-                            type="text"
-                            value={evidence}
-                            onChange={handleEvidenceChange}
-                        />
-                    </FormGroup>
-                </form>
-            </FormDiv>
-            <FormAproveResult>
-                <p>
-                    :1129discord:・**CDS**
-                    <br />
-                    **DISCONNECT:**
-                    <br /> <br />- CDS {cdsDisconnect}
-                    <br /> <br />
-                    :baixinha7_duvidas:・**JULGAMENTO:**
-                    <br />- {judgment} <br /> <br />
-                    `1.` Resolvido por: &lt;@
-                    {staffResp.find((staff) => staff.id === parseInt(selectedStaff))
-                        ?.discId || "Nenhum selecionado"}
-                    &gt;
-                    <br />
-                    `2.` Aprovado por:
-                    <br />
-                    `3.` Ticket Nmr: {ticketNumber}
-                    <br />
-                    `4.` Denunciante: {whistleblower} | @ <br />
-                    `5.` Denunciado: {id} |&lt;@&gt; <br />
-                    `6.` Julgamento: **APROVADO**
-                    <br />
-                    `7.` Motivo: 40.17 - COMBAT LOGGING
-                    <br />
-                    `8.` Tempo e Punição: 3 DIAS + @adv
-                    <br />
-                    `9.` Provas: {evidence}
-                </p>
-            </FormAproveResult>
+            <MainDivHome>
+
+                <FormDiv>
+                    <form>
+                        <FormGroup>
+                            <LabelForm>CDS</LabelForm>
+                            <Input
+                                type="text"
+                                value={cdsDisconnect}
+                                onChange={handleCdsDisconnectChange}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <LabelForm>Resolvido por:</LabelForm>
+                            <SelectInput
+                                id="staff"
+                                name="staffDiscId"
+                                onChange={handleStaffChange}
+                                value={selectedStaff}
+                            >
+                                <option value="">Selecione</option>
+                                {staffResp.map((staff) => (
+                                    <option key={staff.id} value={staff.id}>
+                                        {staff.name}
+                                    </option>
+                                ))}
+                            </SelectInput>
+                        </FormGroup>
+                        <FormGroup>
+                            <LabelForm>JULGAMENTO</LabelForm>
+                            <Input
+                                type="text"
+                                value={judgment}
+                                onChange={handleJudgmentChange}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <LabelForm>Número do Ticket</LabelForm>
+                            <Input
+                                type="text"
+                                value={ticketNumber}
+                                onChange={handleTicketNumberChange}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <LabelForm>Denunciante</LabelForm>
+                            <Input
+                                type="text"
+                                value={whistleblower}
+                                onChange={handleWhistleblowerChange}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <LabelForm>Denunciado</LabelForm>
+                            <Input type="text" value={id} onChange={handleIdChange} />
+                        </FormGroup>
+                        <FormGroup>
+                            <LabelForm>Prova</LabelForm>
+                            <Input
+                                type="text"
+                                value={evidence}
+                                onChange={handleEvidenceChange}
+                            />
+                        </FormGroup>
+                    </form>
+                </FormDiv>
+                <VerticalLine />
+                <FormAproveResult>
+                    <p ref={pRef}>
+                        :1129discord:・**CDS**
+                        <br />
+                        **DISCONNECT:**
+                        <br /> <br />- CDS {cdsDisconnect}
+                        <br /> <br />
+                        :baixinha7_duvidas:・**JULGAMENTO:**
+                        <br />- {judgment} <br /> <br />
+                        `1.` Resolvido por: &lt;@
+                        {staffResp.find((staff) => staff.id === parseInt(selectedStaff))
+                            ?.discId || "Nenhum selecionado"}
+                        &gt;
+                        <br />
+                        `2.` Aprovado por:
+                        <br />
+                        `3.` Ticket Nmr: {ticketNumber}
+                        <br />
+                        `4.` Denunciante: {whistleblower} | @ <br />
+                        `5.` Denunciado: {id} |&lt;@&gt; <br />
+                        `6.` Julgamento: **APROVADO**
+                        <br />
+                        `7.` Motivo: 40.17 - COMBAT LOGGING
+                        <br />
+                        `8.` Tempo e Punição: 3 DIAS + @adv
+                        <br />
+                        `9.` Provas: {evidence}
+                    </p>
+                    <ButtonToCopy onClick={copyToClipboard}>Copiar Formulário</ButtonToCopy>
+                </FormAproveResult>
+            </MainDivHome>
         </div>
     );
 }
@@ -128,6 +149,11 @@ text-align: center;
 padding: 10px 0px;
 `;
 
+const MainDivHome = styled.div`
+  padding: 50px;
+  display: flex;
+  justify-content: space-around;
+`;
 
 const FormDiv = styled.div`
   display: flex;
@@ -146,25 +172,60 @@ const LabelForm = styled.label`
   flex: 1;
   margin-right: 10px;
   text-align: right;
+  width: 150px; /* Ajuste o valor conforme necessário */
 `;
 
 const Input = styled.input`
   flex: 2;
   padding: 5px;
-`;
-
-const InputTextArea = styled.textarea`
-  flex: 2;
-  padding: 5px;
-  height: 100px; /* Ajuste a altura conforme necessário */
+  max-width: 350px;
+  border-radius: 10px;
+  height: 30px;
 `;
 
 const SelectInput = styled.select`
-  width: 397.41px;
+  width: 350px;
+  border-radius: 10px;
+  height: 30px;
 `;
 
 const FormAproveResult = styled.div`
-  padding: 0% 25% 0% 25%;
+  min-width: 500px;
+  border: solid white 3px;
+  border-radius: 20px;
+  margin: 25px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const ButtonToCopy = styled.button`
+  display: block;
+  background-color: #0e0e0e;
+  color: white;
+  padding: 10px;
+  margin: 20px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  width: 100%; /* Faz com que cada link ocupe toda a largura disponível */
+  max-width: 200px; /* Define um limite máximo de largura para cada botão */
+  box-sizing: border-box; /* Inclui padding e border no cálculo da largura total */
+  &:hover {
+    background-color: #f8f8ff;
+    color: #0e0e0e; 
+  }
+`;
+
+const VerticalLine = styled.div`
+  width: 5px;
+  background-color: white;
+  height: 400px;
+  margin: 25px 20px; /* Ajuste a margem para dar espaço entre a linha e os outros componentes */
+  border-radius: 20px;
+  padding-top: 25px;
 `;
 
 export default CombatLog;

@@ -6,7 +6,7 @@ export default function FormNegative() {
     const [selectedStaff, setSelectedStaff] = useState("");
     const [judgment, setJudgment] = useState("");
     const [ticketNumber, setTicketNumber] = useState("");
-    const [whistleblower, setWhistleblower] = useState(""); 
+    const [whistleblower, setWhistleblower] = useState("");
 
     // Array com IDs do staff
     const staffResp = [
@@ -18,12 +18,13 @@ export default function FormNegative() {
     const handleJudgmentChange = (event) => setJudgment(event.target.value);
     const handleTicketNumberChange = (event) => setTicketNumber(event.target.value);
     const handleStaffChange = (event) => setSelectedStaff(event.target.value);
-    const handleWhistleblowerChange = (event) => setWhistleblower(event.target.value); 
+    const handleWhistleblowerChange = (event) => setWhistleblower(event.target.value);
 
     return (
         <>
             <div>
                 <NavBar />
+                <TiltePage>Formulário de denúncia negada</TiltePage>
                 <FormDiv>
                     <form>
                         <FormGroup>
@@ -67,6 +68,12 @@ export default function FormNegative() {
     );
 }
 
+const TiltePage = styled.h1`
+text-align: center;
+padding: 10px 0px;
+`;
+
+
 const FormDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -98,7 +105,7 @@ const InputTextArea = styled.textarea`
 `;
 
 const SelectInput = styled.select`
-width: 397.41px;
+    width: 397.41px;
 `;
 
 const FormAproveResult = styled.div`

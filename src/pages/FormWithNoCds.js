@@ -53,6 +53,7 @@ export default function FormWithNoCds() {
     <>
       <div>
         <NavBar />
+        <TiltePage>Formulário de aprovada a denúncia sem CDS</TiltePage>
         <FormDiv>
           <form>
             <FormGroup>
@@ -117,6 +118,11 @@ export default function FormWithNoCds() {
     </>
   );
 }
+
+const TiltePage = styled.h1`
+text-align: center;
+padding: 10px 0px;
+`;
 
 const FormDiv = styled.div`
   display: flex;

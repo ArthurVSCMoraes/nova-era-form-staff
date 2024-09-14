@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styled from "styled-components";
 import NavBar from "../components/navBar";
+import staffResp from "../data/staffResp";
 export default function FormNegative() {
 
     const [selectedStaff, setSelectedStaff] = useState("");
@@ -8,11 +9,21 @@ export default function FormNegative() {
     const [ticketNumber, setTicketNumber] = useState("");
     const [whistleblower, setWhistleblower] = useState("");
 
-    // Array com IDs do staff
-    const staffResp = [
-        { id: 1, name: "Vulcano", discId: "660278234428080138" },
-        { id: 2, name: "Gigi", discId: "942564213656797224" }
-    ];
+      // Refs para acessar o conteúdo da tag <p>
+  const pRef = useRef(null);
+
+      // Função para copiar o texto
+  const copyToClipboard = async () => {
+    try {
+      if (pRef.current) {
+        const textToCopy = pRef.current.innerText;
+        await navigator.clipboard.writeText(textToCopy);
+        console.log('Texto copiado para a área de transferência');
+      }
+    } catch (err) {
+      console.log('Falha ao copiar o texto', err);
+    }
+  };
 
     // Funções para atualizar os estados
     const handleJudgmentChange = (event) => setJudgment(event.target.value);
@@ -22,9 +33,9 @@ export default function FormNegative() {
 
     return (
         <>
-            <div>
-                <NavBar />
-                <TiltePage>Formulário de denúncia negada</TiltePage>
+            <NavBar />
+            <TiltePage>Formulário de denúncia negada</TiltePage>
+            <MainDiv>
                 <FormDiv>
                     <form>
                         <FormGroup>
@@ -52,8 +63,9 @@ export default function FormNegative() {
                         </FormGroup>
                     </form>
                 </FormDiv>
+                <VerticalLine />
                 <FormAproveResult>
-                    <p>
+                    <p ref={pRef}>
                         :baixinha7_duvidas:・**JULGAMENTO:**<br />
                         - {judgment} <br /> <br />
                         `1.` Resolvido por: &lt;@{staffResp.find(staff => staff.id === parseInt(selectedStaff))?.discId || "Nenhum selecionado"}&gt;<br />
@@ -62,8 +74,9 @@ export default function FormNegative() {
                         `4.` Denunciante: {whistleblower} | @ <br />
                         `6.` Julgamento: **NEGADO**<br />
                     </p>
+                    <ButtonToCopy onClick={copyToClipboard}>Copiar Formulário</ButtonToCopy>
                 </FormAproveResult>
-            </div>
+            </MainDiv>
         </>
     );
 }
@@ -73,12 +86,19 @@ text-align: center;
 padding: 10px 0px;
 `;
 
+const MainDiv = styled.div`
+  padding: 50px;
+  display: flex;
+  justify-content: space-around;
+`;
 
 const FormDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 600px;
   padding-top: 25px;
+      justify-content: space-evenly;
+}
 `;
 
 const FormGroup = styled.div`
@@ -91,23 +111,58 @@ const LabelForm = styled.label`
   flex: 1;
   margin-right: 10px;
   text-align: right;
+  width: 150px; /* Ajuste o valor conforme necessário */
 `;
 
 const Input = styled.input`
   flex: 2;
   padding: 5px;
-`;
-
-const InputTextArea = styled.textarea`
-  flex: 2;
-  padding: 5px;
-  height: 100px; /* Ajuste a altura conforme necessário */
+  max-width: 350px;
+  border-radius: 10px;
+  height: 30px;
 `;
 
 const SelectInput = styled.select`
-    width: 397.41px;
+  width: 350px;
+  border-radius: 10px;
+  height: 30px;
 `;
 
 const FormAproveResult = styled.div`
-  padding: 0% 25% 0% 25%;
+  min-width: 500px;
+  border: solid white 3px;
+  border-radius: 20px;
+  margin: 25px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const ButtonToCopy = styled.button`
+  display: block;
+  background-color: #0e0e0e;
+  color: white;
+  padding: 10px;
+  margin: 20px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  width: 100%; /* Faz com que cada link ocupe toda a largura disponível */
+  max-width: 200px; /* Define um limite máximo de largura para cada botão */
+  box-sizing: border-box; /* Inclui padding e border no cálculo da largura total */
+  &:hover {
+    background-color: #f8f8ff;
+    color: #0e0e0e; 
+  }
+`;
+
+const VerticalLine = styled.div`
+  width: 5px;
+  background-color: white;
+  height: 300px;
+  margin: 25px 20px; /* Ajuste a margem para dar espaço entre a linha e os outros componentes */
+  border-radius: 20px;
+  padding-top: 25px;
 `;

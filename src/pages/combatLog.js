@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import NavBar from "@/components/navBar";
-
+import staffResp from "../data/staffResp";
 function CombatLog() {
     const [selectedStaff, setSelectedStaff] = useState("");
     const [judgment, setJudgment] = useState("");
@@ -11,11 +11,6 @@ function CombatLog() {
     const [whistleblower, setWhistleblower] = useState("");
     const [id, setId] = useState("");
     const [cdsDisconnect, setCdsDisconnect] = useState("");
-
-    const staffResp = [
-        { id: 1, name: "Vulcano", discId: "660278234428080138" },
-        { id: 2, name: "Gigi", discId: "942564213656797224" },
-    ];
 
     const handleJudgmentChange = (event) => setJudgment(event.target.value);
     const handleTicketNumberChange = (event) =>

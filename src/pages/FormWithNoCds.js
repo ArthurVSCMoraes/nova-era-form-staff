@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import NavBar from "../components/navBar";
-
+import staffResp from "../data/staffResp";
 export default function FormWithNoCds() {
   const [selectedStaff, setSelectedStaff] = useState("");
   const [judgment, setJudgment] = useState("");
@@ -10,13 +10,6 @@ export default function FormWithNoCds() {
   const [selectPunishment, setSelectPunishment] = useState("");
   const [id, setId] = useState("");
   const [whistleblower, setWhistleblower] = useState(""); 
-  const [cdsDisconnect, setCdsDisconnect] = useState("");
-
-  // Array com IDs do staff
-  const staffResp = [
-    { id: 1, name: "Vulcano", discId: "660278234428080138" },
-    { id: 2, name: "Gigi", discId: "942564213656797224" }
-  ];
 
   const punishment = [
     { id: 1, law: "40.1 - QUEBRA DE IMERSÃO", pena: "200 MESES + @adv" },
@@ -47,7 +40,6 @@ export default function FormWithNoCds() {
   const handlePunishmentChange = (event) => setSelectPunishment(event.target.value);
   const handleIdChange = (event) => setId(event.target.value);
   const handleWhistleblowerChange = (event) => setWhistleblower(event.target.value); 
-  const handleCdsDisconnectChange = (event) => setCdsDisconnect(event.target.value);
 
   return (
     <>

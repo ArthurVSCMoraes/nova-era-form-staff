@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import styled from "styled-components";
 import { parseLogText } from "../functions/logTransform";
 import NavBar from "../components/navBar";
+import staffResp from "../data/staffResp";
 
 export default function Home() {
   // Estados para armazenar os dados
@@ -20,13 +21,6 @@ export default function Home() {
 
   // Refs para acessar o conteúdo da tag <p>
   const pRef = useRef(null);
-
-  // Array com IDs do staff
-  const staffResp = [
-    { id: 1, name: "Vulcano", discId: "660278234428080138" },
-    { id: 2, name: "Gigi", discId: "942564213656797224" },
-    { id: 3, name: "Jl", discId: "750076986231226418" }
-  ];
 
   const punishment = [
     { id: 1, law: "40.1 - QUEBRA DE IMERSÃO", pena: "200 MESES + @adv" },
@@ -113,7 +107,7 @@ export default function Home() {
               <Input type="text" value={judgment} onChange={handleJudgmentChange} />
             </FormGroup>
             <FormGroup>
-              <LabelForm>Número do Ticket</LabelForm>
+              <LabelForm>Número do Tike</LabelForm>
               <Input type="text" value={ticketNumber} onChange={handleTicketNumberChange} />
             </FormGroup>
             <FormGroup>

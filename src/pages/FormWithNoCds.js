@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import NavBar from "../components/navBar";
 import staffResp from "../data/staffResp";
+import Copyrigth from "@/components/copyrigth";
 
 export default function FormWithNoCds() {
     const [selectedStaff, setSelectedStaff] = useState("");
@@ -127,6 +128,7 @@ export default function FormWithNoCds() {
                     </FormAproveResult>
                 </MainDivHome>
             </div>
+            <Copyrigth/>
         </>
     );
 }

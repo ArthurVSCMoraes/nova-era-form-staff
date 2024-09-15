@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useState, useRef } from "react";
 import NavBar from "@/components/navBar";
 import staffResp from "../data/staffResp";
+import Copyrigth from "@/components/copyrigth";
 function CombatLog() {
     const [selectedStaff, setSelectedStaff] = useState("");
     const [judgment, setJudgment] = useState("");
@@ -140,6 +141,7 @@ function CombatLog() {
                     <ButtonToCopy onClick={copyToClipboard}>Copiar Formulário</ButtonToCopy>
                 </FormAproveResult>
             </MainDivHome>
+            <Copyrigth/>
         </div>
     );
 }

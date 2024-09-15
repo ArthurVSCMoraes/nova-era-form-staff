@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { parseLogText } from "../functions/logTransform";
 import NavBar from "../components/navBar";
 import staffResp from "../data/staffResp";
+import Copyrigth from "@/components/copyrigth";
 
 export default function Home() {
   // Estados para armazenar os dados
@@ -158,6 +159,7 @@ export default function Home() {
           <ButtonToCopy onClick={copyToClipboard}>Copiar Formulário</ButtonToCopy>
         </FormAproveResult>
       </MainDivHome>
+      <Copyrigth/>
     </>
   );
 }

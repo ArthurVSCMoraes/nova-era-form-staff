@@ -3,6 +3,7 @@ import styled from "styled-components";
 import NavBar from "../components/navBar";
 import staffResp from "../data/staffResp";
 import TextBar from "@/components/TextBar";
+import Copyrigth from "@/components/copyrigth";
 
 export default function FormNegative() {
 
@@ -91,6 +92,7 @@ export default function FormNegative() {
                     <TextBar filter='denied' onTextSelect={handleTextSelect} />
                 </TextBarDiv>
             </DivGridForm>
+            <Copyrigth />
         </>
     );
 }

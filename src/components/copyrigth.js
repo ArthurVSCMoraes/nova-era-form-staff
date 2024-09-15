@@ -18,8 +18,8 @@ export default Copyrigth;
 const Vulcano = styled.h4`
 font-family: "Cinzel", serif;
   font-optical-sizing: auto;
-  font-weight: <weight>;
   font-style: normal;
+  color: #6c1413;
 `;
 
 const StyledDiv = styled.div`

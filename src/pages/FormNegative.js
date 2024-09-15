@@ -41,70 +41,90 @@ export default function FormNegative() {
     return (
         <>
             <NavBar />
-            <TiltePage>Formulário de denúncia negada</TiltePage>
-            <MainDiv>
-                <FormDiv>
-                    <form>
-                        <FormGroup>
-                            <LabelForm>Resolvido por:</LabelForm>
-                            <SelectInput id="staff" name="staffDiscId" onChange={handleStaffChange} value={selectedStaff}>
-                                <option value="">Selecione</option>
-                                {staffResp.map((staff) => (
-                                    <option key={staff.id} value={staff.id}>
-                                        {staff.name}
-                                    </option>
-                                ))}
-                            </SelectInput>
-                        </FormGroup>
-                        <FormGroup>
-                            <LabelForm>JULGAMENTO</LabelForm>
-                            <Input type="text" value={judgment} onChange={handleJudgmentChange} />
-                        </FormGroup>
-                        <FormGroup>
-                            <LabelForm>Número do Ticket</LabelForm>
-                            <Input type="text" value={ticketNumber} onChange={handleTicketNumberChange} />
-                        </FormGroup>
-                        <FormGroup>
-                            <LabelForm>Denunciante</LabelForm>
-                            <Input type="text" value={whistleblower} onChange={handleWhistleblowerChange} />
-                        </FormGroup>
-                    </form>
-                </FormDiv>
-                <VerticalLine />
-                <FormAproveResult>
-                    <p ref={pRef}>
-                        :baixinha7_duvidas:・**JULGAMENTO:**<br />
-                        - {judgment} <br /> <br />
-                        `1.` Resolvido por: &lt;@{staffResp.find(staff => staff.id === parseInt(selectedStaff))?.discId || "Nenhum selecionado"}&gt;<br />
-                        `2.` Aprovado por:<br />
-                        `3.` Ticket Nmr: {ticketNumber}<br />
-                        `4.` Denunciante: {whistleblower} | @ <br />
-                        `6.` Julgamento: **NEGADO**<br />
-                    </p>
-                    <ButtonToCopy onClick={copyToClipboard}>Copiar Formulário</ButtonToCopy>
-                </FormAproveResult>
-            </MainDiv>
-            <TextBar filter='denied' onTextSelect={handleTextSelect} />
+            <DivGridForm>
+                <MainDiv>
+                <TiltePage>Formulário de denúncia negada</TiltePage>
+                    <DivForm>
+                    <FormDiv>
+                        <form>
+                            <FormGroup>
+                                <LabelForm>Resolvido por:</LabelForm>
+                                <SelectInput id="staff" name="staffDiscId" onChange={handleStaffChange} value={selectedStaff}>
+                                    <option value="">Selecione</option>
+                                    {staffResp.map((staff) => (
+                                        <option key={staff.id} value={staff.id}>
+                                            {staff.name}
+                                        </option>
+                                    ))}
+                                </SelectInput>
+                            </FormGroup>
+                            <FormGroup>
+                                <LabelForm>JULGAMENTO</LabelForm>
+                                <Input type="text" value={judgment} onChange={handleJudgmentChange} />
+                            </FormGroup>
+                            <FormGroup>
+                                <LabelForm>Número do Ticket</LabelForm>
+                                <Input type="text" value={ticketNumber} onChange={handleTicketNumberChange} />
+                            </FormGroup>
+                            <FormGroup>
+                                <LabelForm>Denunciante</LabelForm>
+                                <Input type="text" value={whistleblower} onChange={handleWhistleblowerChange} />
+                            </FormGroup>
+                        </form>
+                    </FormDiv>
+                    <VerticalLine />
+                    <FormAproveResult>
+                        <FormResult ref={pRef}>
+                            :baixinha7_duvidas:・**JULGAMENTO:**<br />
+                            - {judgment} <br /> <br />
+                            `1.` Resolvido por: &lt;@{staffResp.find(staff => staff.id === parseInt(selectedStaff))?.discId || "Nenhum selecionado"}&gt;<br />
+                            `2.` Aprovado por:<br />
+                            `3.` Ticket Nmr: {ticketNumber}<br />
+                            `4.` Denunciante: {whistleblower} | @ <br />
+                            `6.` Julgamento: **NEGADO**<br />
+                        </FormResult>
+                        <ButtonToCopy onClick={copyToClipboard}>Copiar Formulário</ButtonToCopy>
+                    </FormAproveResult>
+                    </DivForm>
+                </MainDiv>
+                <TextBarDiv>
+                    <TextBar filter='denied' onTextSelect={handleTextSelect} />
+                </TextBarDiv>
+            </DivGridForm>
         </>
     );
 }
 
 const TiltePage = styled.h1`
-text-align: center;
-padding: 10px 0px;
+  text-align: center;
+  padding: 10px 0px;
+`;
+
+const DivGridForm = styled.div`
+  display: grid;
+  grid-template-columns: 80vw 20vw;
+  gap: 20px; /* Espaço entre as colunas, ajuste conforme necessário */
+  width: 100vw; /* Garante que o contêiner ocupe toda a largura da tela */
+  height: calc(100vh - 77px); /* Ajusta a altura para compensar o padding-top */
 `;
 
 const MainDiv = styled.div`
-  padding: 50px;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  padding: 50px;
+  overflow: auto; /* Adiciona rolagem se necessário */
+`;
+
+const DivForm = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 50px;
 `;
 
 const FormDiv = styled.div`
   display: flex;
   flex-direction: column;
-  width: 600px;
-  padding-top: 25px;
+  width: 100%;
   justify-content: space-evenly;
 `;
 
@@ -139,12 +159,15 @@ const FormAproveResult = styled.div`
   min-width: 500px;
   border: solid white 3px;
   border-radius: 20px;
-  margin: 25px;
   display: flex;
-  justify-content: center;
+justify-content: space-evenly;
   align-content: center;
   align-items: center;
   flex-direction: column;
+`;
+
+const FormResult = styled.p`
+max-width: 450px;
 `;
 
 const ButtonToCopy = styled.button`
@@ -156,9 +179,9 @@ const ButtonToCopy = styled.button`
   text-align: center;
   text-decoration: none;
   border-radius: 4px;
-  width: 100%; /* Faz com que cada link ocupe toda a largura disponível */
-  max-width: 200px; /* Define um limite máximo de largura para cada botão */
-  box-sizing: border-box; /* Inclui padding e border no cálculo da largura total */
+  width: 100%;
+  max-width: 200px;
+  box-sizing: border-box;
   &:hover {
     background-color: #f8f8ff;
     color: #0e0e0e; 
@@ -166,10 +189,16 @@ const ButtonToCopy = styled.button`
 `;
 
 const VerticalLine = styled.div`
-  width: 5px;
+  width: 10px;
   background-color: white;
   height: 300px;
   margin: 25px 20px; /* Ajuste a margem para dar espaço entre a linha e os outros componentes */
   border-radius: 20px;
   padding-top: 25px;
+`;
+
+const TextBarDiv = styled.div`
+  padding-top: 77px; /* Padding-top para ajustar com a altura do NavBar */
+  overflow-y: auto; /* Permite rolagem se o conteúdo exceder a altura */
+  border-left: solid white 2px;
 `;

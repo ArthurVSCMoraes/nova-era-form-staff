@@ -11,21 +11,26 @@ export default function FormNegative() {
     const [ticketNumber, setTicketNumber] = useState("");
     const [whistleblower, setWhistleblower] = useState("");
 
-      // Refs para acessar o conteúdo da tag <p>
-  const pRef = useRef(null);
+    // Refs para acessar o conteúdo da tag <p>
+    const pRef = useRef(null);
 
-      // Função para copiar o texto
-  const copyToClipboard = async () => {
-    try {
-      if (pRef.current) {
-        const textToCopy = pRef.current.innerText;
-        await navigator.clipboard.writeText(textToCopy);
-        console.log('Texto copiado para a área de transferência');
-      }
-    } catch (err) {
-      console.log('Falha ao copiar o texto', err);
-    }
-  };
+    // Função para copiar o texto
+    const copyToClipboard = async () => {
+        try {
+            if (pRef.current) {
+                const textToCopy = pRef.current.innerText;
+                await navigator.clipboard.writeText(textToCopy);
+                console.log('Texto copiado para a área de transferência');
+            }
+        } catch (err) {
+            console.log('Falha ao copiar o texto', err);
+        }
+    };
+
+    // Função para atualizar o estado do campo de julgamento
+    const handleTextSelect = (text) => {
+        setJudgment(text);
+    };
 
     // Funções para atualizar os estados
     const handleJudgmentChange = (event) => setJudgment(event.target.value);
@@ -79,7 +84,7 @@ export default function FormNegative() {
                     <ButtonToCopy onClick={copyToClipboard}>Copiar Formulário</ButtonToCopy>
                 </FormAproveResult>
             </MainDiv>
-            <TextBar filter='denied' />
+            <TextBar filter='denied' onTextSelect={handleTextSelect} />
         </>
     );
 }
@@ -100,8 +105,7 @@ const FormDiv = styled.div`
   flex-direction: column;
   width: 600px;
   padding-top: 25px;
-      justify-content: space-evenly;
-}
+  justify-content: space-evenly;
 `;
 
 const FormGroup = styled.div`

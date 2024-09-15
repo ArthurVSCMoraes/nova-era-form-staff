@@ -110,7 +110,7 @@ export default function FormWithNoCds() {
                     </FormDiv>
                     <VerticalLine />
                     <FormAproveResult>
-                        <p>
+                        <p ref={pRef}>
                             :baixinha7_duvidas:・**JULGAMENTO:**<br />
                             - {judgment} <br /> <br />
                             `1.` Resolvido por: &lt;@{staffResp.find(staff => staff.id === parseInt(selectedStaff))?.discId || "Nenhum selecionado"}&gt;<br />

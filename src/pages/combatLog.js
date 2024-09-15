@@ -4,17 +4,41 @@ import { useState, useRef } from "react";
 import NavBar from "@/components/navBar";
 import staffResp from "../data/staffResp";
 import Copyrigth from "@/components/copyrigth";
+import { parseDisconnectLog } from "../functions/logTrasformDisconnect";
+import TextBar from "@/components/TextBar";
+
 function CombatLog() {
+
+    // Estados para armazenar os dados
+    const [logText, setLogText] = useState("");
+    const [parsedData, setParsedData] = useState({
+        whistleblower: "",
+        cdsDisconnect: "",
+    });
+
+    // Função para atualizar o estado do campo de julgamento
+    const handleTextSelect = (text) => {
+        setJudgment(text);
+    };
+
     const [selectedStaff, setSelectedStaff] = useState("");
     const [judgment, setJudgment] = useState("");
     const [ticketNumber, setTicketNumber] = useState("");
     const [evidence, setEvidence] = useState("");
     const [whistleblower, setWhistleblower] = useState("");
-    const [id, setId] = useState("");
-    const [cdsDisconnect, setCdsDisconnect] = useState("");
+    // const [id, setId] = useState("");
+    // const [cdsDisconnect, setCdsDisconnect] = useState("");
 
     // Refs para acessar o conteúdo da tag <p>
     const pRef = useRef(null);
+
+    // Função para lidar com mudanças no texto do log
+    const handleLogChange = (event) => {
+        const text = event.target.value;
+        setLogText(text);
+        const data = parseDisconnectLog(text);
+        setParsedData(data); // Atualiza os dados analisados
+    };
 
     // Função para copiar o texto
     const copyToClipboard = async () => {
@@ -48,12 +72,8 @@ function CombatLog() {
                 <FormDiv>
                     <form>
                         <FormGroup>
-                            <LabelForm>CDS</LabelForm>
-                            <Input
-                                type="text"
-                                value={cdsDisconnect}
-                                onChange={handleCdsDisconnectChange}
-                            />
+                            <LabelForm>Log</LabelForm>
+                            <InputTextArea value={logText} onChange={handleLogChange} />
                         </FormGroup>
                         <FormGroup>
                             <LabelForm>Resolvido por:</LabelForm>
@@ -97,7 +117,7 @@ function CombatLog() {
                         </FormGroup>
                         <FormGroup>
                             <LabelForm>Denunciado</LabelForm>
-                            <Input type="text" value={id} onChange={handleIdChange} />
+                            <Input type="text" value={parsedData.reported} onChange={handleIdChange} />
                         </FormGroup>
                         <FormGroup>
                             <LabelForm>Prova</LabelForm>
@@ -115,7 +135,7 @@ function CombatLog() {
                         :1129discord:・**CDS**
                         <br />
                         **DISCONNECT:**
-                        <br /> <br />- CDS {cdsDisconnect}
+                        <br /> <br />- CDS {parsedData.cdsDisconnect}
                         <br /> <br />
                         :baixinha7_duvidas:・**JULGAMENTO:**
                         <br />- {judgment} <br /> <br />
@@ -129,7 +149,7 @@ function CombatLog() {
                         `3.` Ticket Nmr: {ticketNumber}
                         <br />
                         `4.` Denunciante: {whistleblower} | @ <br />
-                        `5.` Denunciado: {id} |&lt;@&gt; <br />
+                        `5.` Denunciado: {parsedData.reported} |&lt;@&gt; <br />
                         `6.` Julgamento: **APROVADO**
                         <br />
                         `7.` Motivo: 40.17 - COMBAT LOGGING
@@ -141,7 +161,8 @@ function CombatLog() {
                     <ButtonToCopy onClick={copyToClipboard}>Copiar Formulário</ButtonToCopy>
                 </FormAproveResult>
             </MainDivHome>
-            <Copyrigth/>
+            <TextBar filter='aproove' onTextSelect={handleTextSelect} />
+            <Copyrigth />
         </div>
     );
 }
@@ -183,6 +204,15 @@ const Input = styled.input`
   max-width: 350px;
   border-radius: 10px;
   height: 30px;
+`;
+
+const InputTextArea = styled.textarea`
+  flex: 2;
+  padding: 5px;
+  height: 100px; /* Ajuste a altura conforme necessário */
+  max-width: 350px;
+  border-radius: 10px;
+  resize: none;
 `;
 
 const SelectInput = styled.select`

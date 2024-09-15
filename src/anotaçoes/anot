@@ -20,6 +20,73 @@
 // `8.` Tempo e Punição: 450 MESES + @adv
 // `9.` Provas:
 
-//resolver: pulando linhas / os emojis dando conflito
 
-<!-- colocar denunciante e denunciado lado a lado -->
+
+//resolver: Ajustar a estilização e tamanho maximo que o formulario fica dentro do hhome
+
+
+
+//colocar denunciante e denunciado lado a lado
+
+fazer função para copiar o formulário em todos as páginas
+colocar padrão de estilização igual em todo as paginas
+home ok
+semcds 
+combatlogging
+negado ok
+Fazer animações no site
+
+
+
+    { id: 1, law: "40.1 - QUEBRA DE IMERSÃO", pena: "200 MESES + @adv" }, sem 
+    { id: 2, law: "40.2 - REVANGE KILL [LEMBRAR AÇÃO]", pena: "150 MESES + @adv" },
+    { id: 3, law: "40.3 - ABUSO DE BUG", pena: "150 MESES + @adv" }, sem
+    { id: 4, law: "40.4 - MATAR EM ÁREA SAFE", pena: "150 MESES + @adv" },
+    { id: 5, law: "40.5 - BIND EM AÇÃO", pena: "150 MESES + @adv" }, sem
+    { id: 6, law: "40.6 - FALAR MORTO [OCC, /ME, VOICE, PAINEL POLICE]", pena: "200 MESES + @adv" }, sem
+    { id: 7, law: "40.7 - ABUSO DE PODER", pena: "250 MESES + @adv" }, sem
+    { id: 8, law: "40.8 - ATIRAR DO MORRO", pena: "400 MESES + @adv" },
+    { id: 9, law: "40.9 - RANDOM DEATHMATCH [RDM]", pena: "450 MESES + @adv" },
+    { id: 10, law: "40.10 - VEHICLE DEATHMATCH [VDM]", pena: "450 MESES + @adv" },
+    { id: 11, law: "40.11 - LOOT INDEVIDO", pena: "600 MESES + @adv" }, sem
+    { id: 12, law: "40.12 - ANTI-RP", pena: "600 MESES + @adv" }, sem
+    { id: 13, law: "40.13 - META-GAMING", pena: "600 MESES + @adv" }, sem
+    { id: 14, law: "40.14 - ZARALHO NO HOSPITAL", pena: "600 MESES + @adv" }, sem
+    { id: 15, law: "40.15 -  POWERGAMING", pena: "200 MESES + @adv" }, sem
+    { id: 16, law: "40.16 - ANTI AMOR A VIDA", pena: "600 MESES + @adv OU PD DE PERSONAGENS EM AÇÕES EXPRESSIVAS, À DEPENDER DE ANALÍSE PRÉVIA" }, sem
+    { id: 17, law: "40.18 - USO DE NO-PROPS E/OU NO-NIGHT", pena: "@ban ATÉ A REMOÇÃO + APÓS CONVERSÃO EM  300 MESES + @adv" }, sem
+    { id: 18, law: "40.19 -  SEQUESTRAR FORA DO HORÁRIO PERMITIDO (DENTRO DO HORÁRIO DE PISTA)", pena: "300 MESES + @adv" }, sem
+    { id: 19, law: "40.20 -  SEQUESTRAR PROFISSIONAIS LEGAIS (MECÂNICOS E MÉDICOS) CARACTERIZADOS", pena: "350 MESES + @adv" }, sem
+    { id: 20, law: "40.21 -  MATAR PROFISSIONAIS LEGAIS (MECÂNICOS E MÉDICOS)  CARACTERIZADOS (EM QUALQUER PERÍMETRO DA CIDADE)", pena: "500 MESES + @adv" }, 
+    { id: 21, law: "40.22 -  DAR VOZ DE ASSALTO FORA DO HORÁRIO PERMITIDO", pena: "200 MESES + @adv" }, 
+    { id: 22, law: "40.23 -  DRIVE BY (morte com a utilização de blindado) ", pena: "350 MESES + @adv" },
+    { id: 23, law: "40.24 -  ROUBAR VEÍCULO EM ÀREA SAFE", pena: "450 MESES + @adv" }, sem
+    { id: 24, law: "40.25 - UTILIZAÇÃO DE VEÍCULOS LEGAIS NA PRÁTICA DE DELÍTOS (INCLUINDO BAQUES)", pena: "400 MESES + @adv" },
+    { id: 25, law: "40.26 - COPYBAIT ENVOLVENDO O ILEGAL x LEGAL", pena: "600 MESES + @adv" },
+    { id: 26, law: "41.1 - DARK RP", pena: "@ban" }, sem
+    { id: 27, law: "41.4 - INVASÃO A DP", pena: "@ban" }
+
+
+    **DISCONNECT**
+
+**Passaporte:**
+```cs
+- 867  ```
+**Source:**
+```cs
+- 743 ```
+**Health:**
+```cs
+- 200 ```
+**Armour:**
+```cs
+- 20 ```
+**Motivo:**
+```cs
+- Exiting ```
+**Coordenadas:**
+```cs
+1273.3846435547,-235.95164489746,99.021240234375 ```
+**Horario:**
+```cs
+[15/09/2024 ás 15:37] ```

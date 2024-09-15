@@ -4,6 +4,7 @@ import { parseLogText } from "../functions/logTransform";
 import NavBar from "../components/navBar";
 import staffResp from "../data/staffResp";
 import Copyrigth from "@/components/copyrigth";
+import TextBar from "@/components/TextBar";
 
 export default function Home() {
   // Estados para armazenar os dados
@@ -19,6 +20,11 @@ export default function Home() {
   const [ticketNumber, setTicketNumber] = useState("");
   const [evidence, setEvidence] = useState("");
   const [selectPunishment, setSelectPunishment] = useState("");
+
+  // Função para atualizar o estado do campo de julgamento
+  const handleTextSelect = (text) => {
+    setJudgment(text);
+  };
 
   // Refs para acessar o conteúdo da tag <p>
   const pRef = useRef(null);
@@ -159,7 +165,8 @@ export default function Home() {
           <ButtonToCopy onClick={copyToClipboard}>Copiar Formulário</ButtonToCopy>
         </FormAproveResult>
       </MainDivHome>
-      <Copyrigth/>
+      <TextBar filter='aproove' onTextSelect={handleTextSelect} />
+      <Copyrigth />
     </>
   );
 }

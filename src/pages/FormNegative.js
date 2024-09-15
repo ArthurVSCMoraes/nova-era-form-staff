@@ -200,7 +200,6 @@ const VerticalLine = styled.div`
 `;
 
 const TextBarDiv = styled.div`
-  padding-top: 77px; /* Padding-top para ajustar com a altura do NavBar */
   overflow-y: auto; /* Permite rolagem se o conteúdo exceder a altura */
   border-left: solid white 2px;
 `;

@@ -26,7 +26,7 @@ export default function FormWithNoCds() {
         { id: 9, law: "40.14 - ZARALHO NO HOSPITAL", pena: "600 MESES + @adv" },
         { id: 10, law: "40.15 - POWERGAMING", pena: "200 MESES + @adv" },
         { id: 11, law: "40.16 - ANTI AMOR A VIDA", pena: "600 MESES + @adv OU PD DE PERSONAGENS EM AÇÕES EXPRESSIVAS, À DEPENDER DE ANALÍSE PRÉVIA" },
-        { id: 12, law: "40.18 - USO DE NO-PROPS E/OU NO-NIGHT", pena: "@ban ATÉ A REMOÇÃO + APÓS CONVERSÃO EM 300 MESES + @adv" },
+        { id: 12, law: "40.18 - USO DE NO-PROPS", pena: ": @ban ATÉ A REMOÇÃO + APÓS CONVERSÃO EM  300 MESES + @adv." },
         { id: 13, law: "40.19 - SEQUESTRAR FORA DO HORÁRIO PERMITIDO (DENTRO DO HORÁRIO DE PISTA)", pena: "300 MESES + @adv" },
         { id: 14, law: "40.20 - SEQUESTRAR PROFISSIONAIS LEGAIS (MECÂNICOS E MÉDICOS) CARACTERIZADOS", pena: "350 MESES + @adv" },
         { id: 15, law: "40.22 - DAR VOZ DE ASSALTO FORA DO HORÁRIO PERMITIDO", pena: "200 MESES + @adv" },

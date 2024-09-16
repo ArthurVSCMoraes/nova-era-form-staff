@@ -17,7 +17,11 @@ const textForms = [
     { id: 16, result: "aproove", title: "Combatlogging", Text: "O mesmo enquanto estava na ação ou desmaido, quitou para assim evitar o loot." },
     { id: 17, result: "aproove", title: "Loot indevido a policial", Text: "O player denunciado 0 cometeu Loot Indevido ao lootear o player denunciante 0 em uma ação de rua, já que o mesmo é policial" },
     { id: 18, result: "aproove", title: "Darkrp", Text: "Em clip da para se constatar com exatidão que o denunciado proferiu palavras de cunho preconceituoso assim configurando DarkRp" },
-    { id: 19, result: "aproove", title: "Invasão a dp", Text: "Perante as provas apresentadas foi constadada que o denunciado invadiu um base policial, que indepentende do intuito configura como regra de regra gravissima" }
+    { id: 19, result: "aproove", title: "Invasão a dp", Text: "Perante as provas apresentadas foi constado que o denunciado invadiu um base policial, que indepentende do intuito configura como quebra de regra gravissima" },
+    { id: 20, result: "denied", title: "Abrir ticket no ilegal", Text: "O ticket deve ser aberto por um chefe ou frente através do discord do ilegal" },
+    { id: 21, result: "denied", title: "Abrir solicitar tela", Text: "O ticket por se tratar de uma denúncia referente a possibilidade de uso de hack, deve ser aberto através do <#1242178126281179166> " },
+    { id: 22, result: "denied", title: "Abrir ticket no ilegal", Text: "" }
+    
 ];
 
 export default textForms;

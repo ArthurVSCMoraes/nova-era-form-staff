@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import NavBar from "../components/navBar";
 import staffResp from "../data/staffResp";
@@ -13,6 +13,7 @@ export default function FormWithNoCds() {
     const [selectPunishment, setSelectPunishment] = useState("");
     const [id, setId] = useState("");
     const [whistleblower, setWhistleblower] = useState("");
+    const [isOutsideDiscord, setIsOutsideDiscord] = useState(false); // Estado para o checkbox
 
     const punishment = [
         { id: 1, law: "40.1 - QUEBRA DE IMERSÃO", pena: "200 MESES + @adv" },
@@ -26,7 +27,7 @@ export default function FormWithNoCds() {
         { id: 9, law: "40.14 - ZARALHO NO HOSPITAL", pena: "600 MESES + @adv" },
         { id: 10, law: "40.15 - POWERGAMING", pena: "200 MESES + @adv" },
         { id: 11, law: "40.16 - ANTI AMOR A VIDA", pena: "600 MESES + @adv OU PD DE PERSONAGENS EM AÇÕES EXPRESSIVAS, À DEPENDER DE ANALÍSE PRÉVIA" },
-        { id: 12, law: "40.18 - USO DE NO-PROPS", pena: ": @ban ATÉ A REMOÇÃO + APÓS CONVERSÃO EM  300 MESES + @adv." },
+        { id: 12, law: "40.18 - USO DE NO-PROPS", pena: ": @ban ATÉ A REMOÇÃO + APÓS CONVERSÃO EM 300 MESES + @adv." },
         { id: 13, law: "40.19 - SEQUESTRAR FORA DO HORÁRIO PERMITIDO (DENTRO DO HORÁRIO DE PISTA)", pena: "300 MESES + @adv" },
         { id: 14, law: "40.20 - SEQUESTRAR PROFISSIONAIS LEGAIS (MECÂNICOS E MÉDICOS) CARACTERIZADOS", pena: "350 MESES + @adv" },
         { id: 15, law: "40.22 - DAR VOZ DE ASSALTO FORA DO HORÁRIO PERMITIDO", pena: "200 MESES + @adv" },
@@ -34,6 +35,9 @@ export default function FormWithNoCds() {
         { id: 17, law: "41.1 - DARK RP", pena: "@ban" },
         { id: 18, law: "41.4 - INVASÃO A DP", pena: "@ban" }
     ];
+
+    const [denunciadoTexto, setDenunciadoTexto] = useState(`5. Denunciado: ${id} | <@>`);
+    const [tempoEPunicaoTexto, setTempoEPunicaoTexto] = useState(`8. Tempo e Punição: ${punishment.find(pun => pun.id === parseInt(selectPunishment))?.pena || "Nenhum selecionado"}`);
 
     const pRef = useRef(null);
 
@@ -49,6 +53,19 @@ export default function FormWithNoCds() {
         }
     };
 
+    useEffect(() => {
+        setDenunciadoTexto(`5. Denunciado: ${id} | ${isOutsideDiscord ? "(FORA DO DC)" : "<@>"}`);
+    }, [id, isOutsideDiscord]);
+
+    useEffect(() => {
+        const selectedPunishment = punishment.find(pun => pun.id === parseInt(selectPunishment))?.pena || "Nenhum selecionado";
+        if (isOutsideDiscord) {
+            setTempoEPunicaoTexto(`8. Tempo e Punição: @ban ATÉ SUBIR SUPORTE. APÓS ${selectedPunishment}`);
+        } else {
+            setTempoEPunicaoTexto(`8. Tempo e Punição: ${selectedPunishment}`);
+        }
+    }, [selectPunishment, isOutsideDiscord]);
+
     const handleTextSelect = (text) => {
         setJudgment(text);
     };
@@ -60,6 +77,7 @@ export default function FormWithNoCds() {
     const handlePunishmentChange = (event) => setSelectPunishment(event.target.value);
     const handleIdChange = (event) => setId(event.target.value);
     const handleWhistleblowerChange = (event) => setWhistleblower(event.target.value);
+    const handleCheckboxChange = () => setIsOutsideDiscord(prev => !prev); // Alternar estado do checkbox
 
     return (
         <>
@@ -98,6 +116,20 @@ export default function FormWithNoCds() {
                                     <Input type="text" value={id} onChange={handleIdChange} />
                                 </FormGroup>
                                 <FormGroup>
+                                    <LabelForm>Fora do Discord</LabelForm>
+                                    <DivCheckbox>
+                                        <Texte5_1><blond>SIM</blond></Texte5_1>
+                                        <Texte5_2><blond>NÃO</blond></Texte5_2>
+                                        <CheckboxInput
+                                            type="checkbox"
+                                            id="caseCocher5-1"
+                                            checked={isOutsideDiscord}
+                                            onChange={handleCheckboxChange}
+                                        />
+                                        <LabelCheckbox htmlFor="caseCocher5-1">&#128500;</LabelCheckbox>
+                                    </DivCheckbox>
+                                </FormGroup>
+                                <FormGroup>
                                     <LabelForm>Motivo</LabelForm>
                                     <SelectInput id="punishment" name="punishmentSelect" onChange={handlePunishmentChange} value={selectPunishment}>
                                         <option value="">Selecione</option>
@@ -123,19 +155,19 @@ export default function FormWithNoCds() {
                                 `2.` Aprovado por:<br />
                                 `3.` Ticket Nmr: {ticketNumber}<br />
                                 `4.` Denunciante: {whistleblower} | @ <br />
-                                `5.` Denunciado: {id} | &lt;@&gt; <br />
+                                {denunciadoTexto}<br />
                                 `6.` Julgamento: **APROVADO**<br />
                                 `7.` Motivo: {punishment.find(pun => pun.id === parseInt(selectPunishment))?.law || "Nenhum selecionado"}<br />
-                                `8.` Tempo e Punição: {punishment.find(pun => pun.id === parseInt(selectPunishment))?.pena || "Nenhum selecionado"}<br />
+                                {tempoEPunicaoTexto}<br />
                                 `9.` Provas: {evidence}
                             </FormResult>
                             <ButtonToCopy onClick={copyToClipboard}>Copiar Formulário</ButtonToCopy>
                         </FormAproveResult>
                     </DivForm>
                 </MainDivHome>
-                    <TextBarDiv>
-                        <TextBar filter='aproove' onTextSelect={handleTextSelect} />
-                    </TextBarDiv>
+                <TextBarDiv>
+                    <TextBar filter='aproove' onTextSelect={handleTextSelect} />
+                </TextBarDiv>
             </DivGridForm>
             <Copyrigth />
         </>
@@ -161,16 +193,18 @@ const MainDivHome = styled.div`
   padding: 30px;
   overflow: auto; /* Adiciona rolagem se necessário */
 `;
+
 const DivForm = styled.div`
   display: flex;
   flex-direction: row;
   padding: 50px;
 `;
+
 const FormDiv = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 25px;
-    justify-content: space-evenly;
+  justify-content: space-evenly;
 `;
 
 const FormGroup = styled.div`
@@ -205,7 +239,7 @@ const FormAproveResult = styled.div`
   border: solid white 3px;
   border-radius: 20px;
   display: flex;
-justify-content: space-evenly;
+  justify-content: space-evenly;
   align-content: center;
   align-items: center;
   flex-direction: column;
@@ -245,4 +279,61 @@ const VerticalLine = styled.div`
 const TextBarDiv = styled.div`
   overflow-y: auto;
   border-left: solid white 2px;
+`;
+
+const DivCheckbox = styled.div`
+    position: relative;
+    margin: 2px;
+    width: 86px;
+    height: 30px;
+    border-radius: 15px;
+    background: #0a0a0a;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #2d2d2d;
+`;
+
+
+const LabelCheckbox = styled.label`
+position: absolute;
+cursor: pointer;
+width: 40px;
+height: 24px;
+border-radius: 15px 0 0 15px;
+    background: #000000;
+    color: #ffffff;
+    text-align: center;
+    transition: transform 0.5s ease, background 0.5s ease, border-radius 0.5s ease; 
+`;
+
+const CheckboxInput = styled.input`
+    visibility: hidden;
+    &:checked + ${LabelCheckbox} {
+        transform: translateX(42px); /* Move para a direita */
+        border-radius: 0 15px 15px 0;
+        background: #ff0000; /* Cor quando "SIM" */
+    }
+`;
+
+const Texte5_1 = styled.div`
+position: absolute;
+    left: 4px;
+    top: 4px;
+    width: 40px;
+    height: 24px;
+    line-height: 24px;
+    color: #ff0000;
+    text-align: center;
+`;
+
+const Texte5_2 = styled.div`
+    position: absolute;
+    left: 44px;
+    top: 4px;
+    width: 40px;
+    height: 24px;
+    line-height: 24px;
+    color: #1FA055; 
+    text-align: center;
 `;

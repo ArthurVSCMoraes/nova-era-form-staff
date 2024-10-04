@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { parseLogText } from "../functions/logTransform";
 import NavBar from "../components/navBar";
@@ -20,6 +20,7 @@ export default function Home() {
   const [ticketNumber, setTicketNumber] = useState("");
   const [evidence, setEvidence] = useState("");
   const [selectPunishment, setSelectPunishment] = useState("");
+  const [isOutsideDiscord, setIsOutsideDiscord] = useState(false); // Estado para o checkbox
 
   // Função para atualizar o estado do campo de julgamento
   const handleTextSelect = (text) => {
@@ -45,7 +46,7 @@ export default function Home() {
     { id: 13, law: "40.13 - META-GAMING", pena: "600 MESES + @adv" },
     { id: 14, law: "40.14 - ZARALHO NO HOSPITAL", pena: "600 MESES + @adv" },
     { id: 15, law: "40.15 - POWERGAMING", pena: "200 MESES + @adv" },
-    { id: 16, law: "40.16 - ANTI AMOR A VIDA", pena: "600 MESES + @adv OU PD DE PERSONAGENS EM AÇÕES EXPRESSIVAS, À DEPENDER DE ANALÍSE PRÉVIA" },
+    { id: 16, law: "40.16 - ANTI AMOR A VIDA", pena: "600 MESES OU PD DE PERSONAGENS + @adv " },
     { id: 17, law: "40.18 - USO DE NO-PROPS", pena: ": @ban ATÉ A REMOÇÃO + APÓS CONVERSÃO EM  300 MESES + @adv." },
     { id: 18, law: "40.19 - SEQUESTRAR FORA DO HORÁRIO PERMITIDO (DENTRO DO HORÁRIO DE PISTA)", pena: "300 MESES + @adv" },
     { id: 19, law: "40.20 - SEQUESTRAR PROFISSIONAIS LEGAIS (MECÂNICOS E MÉDICOS) CARACTERIZADOS", pena: "350 MESES + @adv" },
@@ -58,6 +59,9 @@ export default function Home() {
     { id: 26, law: "41.1 - DARK RP", pena: "@ban" },
     { id: 27, law: "41.4 - INVASÃO A DP", pena: "@ban" }
   ];
+
+  const [denunciadoTexto, setDenunciadoTexto] = useState(`5. Denunciado: ${parsedData.id} | <@>`);
+  const [tempoEPunicaoTexto, setTempoEPunicaoTexto] = useState(`8. Tempo e Punição: ${punishment.find(pun => pun.id === parseInt(selectPunishment))?.pena || "Nenhum selecionado"}`);
 
   // Função para lidar com mudanças no texto do log
   const handleLogChange = (event) => {
@@ -80,12 +84,26 @@ export default function Home() {
     }
   };
 
+  useEffect(() => {
+    setDenunciadoTexto(`5. Denunciado: ${parsedData.id} | ${isOutsideDiscord ? "(FORA DO DC)" : "<@>"}`);
+}, [parsedData.id, isOutsideDiscord]);
+
+useEffect(() => {
+  const selectedPunishment = punishment.find(pun => pun.id === parseInt(selectPunishment))?.pena || "Nenhum selecionado";
+  if (isOutsideDiscord) {
+      setTempoEPunicaoTexto(`8. Tempo e Punição: @ban ATÉ SUBIR SUPORTE. APÓS ${selectedPunishment}`);
+  } else {
+      setTempoEPunicaoTexto(`8. Tempo e Punição: ${selectedPunishment}`);
+  }
+}, [selectPunishment, isOutsideDiscord]);
+
   // Funções para atualizar os estados
   const handleJudgmentChange = (event) => setJudgment(event.target.value);
   const handleTicketNumberChange = (event) => setTicketNumber(event.target.value);
   const handleStaffChange = (event) => setSelectedStaff(event.target.value);
   const handleEvidenceChange = (event) => setEvidence(event.target.value);
   const handlePunishmentChange = (event) => setSelectPunishment(event.target.value);
+  const handleCheckboxChange = () => setIsOutsideDiscord(prev => !prev); // Alternar estado do checkbox
 
   return (
     <>
@@ -126,6 +144,20 @@ export default function Home() {
               <Input type="text" value={parsedData.id} readOnly />
             </FormGroup>
             <FormGroup>
+              <LabelForm>Fora do Discord</LabelForm>
+              <DivCheckbox>
+                <Texte5_1><blond>SIM</blond></Texte5_1>
+                <Texte5_2><blond>NÃO</blond></Texte5_2>
+                <CheckboxInput
+                  type="checkbox"
+                  id="caseCocher5-1"
+                  checked={isOutsideDiscord}
+                  onChange={handleCheckboxChange}
+                />
+                <LabelCheckbox htmlFor="caseCocher5-1">&#128500;</LabelCheckbox>
+              </DivCheckbox>
+            </FormGroup>
+            <FormGroup>
               <LabelForm>Motivo</LabelForm>
               <SelectInput id="punishment" name="punishmentSelect" onChange={handlePunishmentChange} value={selectPunishment}>
                 <option value="">Selecione</option>
@@ -156,10 +188,10 @@ export default function Home() {
             `2.` Aprovado por:<br />
             `3.` Ticket Nmr: {ticketNumber}<br />
             `4.` Denunciante: {parsedData.whistleblower} | @ <br />
-            `5.` Denunciado: {parsedData.id} | &lt;@&gt; <br />
+            {denunciadoTexto}<br />
             `6.` Julgamento: **APROVADO**<br />
             `7.` Motivo: {punishment.find(staff => staff.id === parseInt(selectPunishment))?.law || "Nenhum selecionado"}<br />
-            `8.` Tempo e Punição: {punishment.find(staff => staff.id === parseInt(selectPunishment))?.pena || "Nenhum selecionado"}<br />
+            {tempoEPunicaoTexto}<br />
             `9.` Provas: {evidence}
           </p>
           <ButtonToCopy onClick={copyToClipboard}>Copiar Formulário</ButtonToCopy>
@@ -262,4 +294,61 @@ const VerticalLine = styled.div`
   margin: 25px 20px; /* Ajuste a margem para dar espaço entre a linha e os outros componentes */
   border-radius: 20px;
   padding-top: 25px;
+`;
+
+const DivCheckbox = styled.div`
+    position: relative;
+    margin: 2px;
+    width: 86px;
+    height: 30px;
+    border-radius: 15px;
+    background: #0a0a0a;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #2d2d2d;
+`;
+
+
+const LabelCheckbox = styled.label`
+position: absolute;
+cursor: pointer;
+width: 40px;
+height: 24px;
+border-radius: 15px 0 0 15px;
+background: #000000;
+color: #ffffff;
+text-align: center;
+transition: transform 0.5s ease, background 0.5s ease, border-radius 0.5s ease; 
+`;
+
+const CheckboxInput = styled.input`
+    visibility: hidden;
+    &:checked + ${LabelCheckbox} {
+        transform: translateX(42px); /* Move para a direita */
+        border-radius: 0 15px 15px 0;
+        background: #ff0000; /* Cor quando "SIM" */
+    }
+`;
+
+const Texte5_1 = styled.div`
+position: absolute;
+    left: 4px;
+    top: 4px;
+    width: 40px;
+    height: 24px;
+    line-height: 24px;
+    color: #ff0000;
+    text-align: center;
+`;
+
+const Texte5_2 = styled.div`
+    position: absolute;
+    left: 44px;
+    top: 4px;
+    width: 40px;
+    height: 24px;
+    line-height: 24px;
+    color: #1FA055; 
+    text-align: center;
 `;

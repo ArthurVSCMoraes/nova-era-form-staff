@@ -91,9 +91,9 @@ export default function Home() {
 useEffect(() => {
   const selectedPunishment = punishment.find(pun => pun.id === parseInt(selectPunishment))?.pena || "Nenhum selecionado";
   if (isOutsideDiscord) {
-      setTempoEPunicaoTexto(``8.` Tempo e Punição: @ban ATÉ SUBIR SUPORTE. APÓS ${selectedPunishment}`);
+      setTempoEPunicaoTexto(`8. Tempo e Punição: @ban ATÉ SUBIR SUPORTE. APÓS ${selectedPunishment}`);
   } else {
-      setTempoEPunicaoTexto(``8.` Tempo e Punição: ${selectedPunishment}`);
+      setTempoEPunicaoTexto(`8. Tempo e Punição: ${selectedPunishment}`);
   }
 }, [selectPunishment, isOutsideDiscord]);
 

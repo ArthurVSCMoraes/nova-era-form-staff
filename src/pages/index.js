@@ -85,7 +85,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    setDenunciadoTexto(`5. Denunciado: ${parsedData.id} | ${isOutsideDiscord ? "(FORA DO DC)" : "<@>"}`);
+    setDenunciadoTexto(` Denunciado: ${parsedData.id} | ${isOutsideDiscord ? "(FORA DO DC)" : "<@>"}`);
 }, [parsedData.id, isOutsideDiscord]);
 
 useEffect(() => {

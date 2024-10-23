@@ -60,8 +60,8 @@ export default function Home() {
     { id: 27, law: "41.4 - INVASÃO A DP", pena: "@ban" }
   ];
 
-  const [denunciadoTexto, setDenunciadoTexto] = useState(`5. Denunciado: ${parsedData.id} | <@>`);
-  const [tempoEPunicaoTexto, setTempoEPunicaoTexto] = useState(`8. Tempo e Punição: ${punishment.find(pun => pun.id === parseInt(selectPunishment))?.pena || "Nenhum selecionado"}`);
+  const [denunciadoTexto, setDenunciadoTexto] = useState(` Denunciado: ${parsedData.id} | <@>`);
+  const [tempoEPunicaoTexto, setTempoEPunicaoTexto] = useState(` Tempo e Punição: ${punishment.find(pun => pun.id === parseInt(selectPunishment))?.pena || "Nenhum selecionado"}`);
 
   // Função para lidar com mudanças no texto do log
   const handleLogChange = (event) => {
@@ -91,9 +91,9 @@ export default function Home() {
 useEffect(() => {
   const selectedPunishment = punishment.find(pun => pun.id === parseInt(selectPunishment))?.pena || "Nenhum selecionado";
   if (isOutsideDiscord) {
-      setTempoEPunicaoTexto(`8. Tempo e Punição: @ban ATÉ SUBIR SUPORTE. APÓS ${selectedPunishment}`);
+      setTempoEPunicaoTexto(` Tempo e Punição: @ban ATÉ SUBIR SUPORTE. APÓS ${selectedPunishment}`);
   } else {
-      setTempoEPunicaoTexto(`8. Tempo e Punição: ${selectedPunishment}`);
+      setTempoEPunicaoTexto(` Tempo e Punição: ${selectedPunishment}`);
   }
 }, [selectPunishment, isOutsideDiscord]);
 
@@ -188,10 +188,10 @@ useEffect(() => {
             `2.` Aprovado por:<br />
             `3.` Ticket Nmr: {ticketNumber}<br />
             `4.` Denunciante: {parsedData.whistleblower} | @ <br />
-            {denunciadoTexto}<br />
+            `5.` {denunciadoTexto}<br />
             `6.` Julgamento: **APROVADO**<br />
             `7.` Motivo: {punishment.find(staff => staff.id === parseInt(selectPunishment))?.law || "Nenhum selecionado"}<br />
-            {tempoEPunicaoTexto}<br />
+            `8.` {tempoEPunicaoTexto}<br />
             `9.` Provas: {evidence}
           </p>
           <ButtonToCopy onClick={copyToClipboard}>Copiar Formulário</ButtonToCopy>

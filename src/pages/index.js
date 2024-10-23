@@ -60,8 +60,8 @@ export default function Home() {
     { id: 27, law: "41.4 - INVASÃO A DP", pena: "@ban" }
   ];
 
-  const [denunciadoTexto, setDenunciadoTexto] = useState(``5.` Denunciado: ${parsedData.id} | <@>`);
-  const [tempoEPunicaoTexto, setTempoEPunicaoTexto] = useState(``8.` Tempo e Punição: ${punishment.find(pun => pun.id === parseInt(selectPunishment))?.pena || "Nenhum selecionado"}`);
+  const [denunciadoTexto, setDenunciadoTexto] = useState(`5. Denunciado: ${parsedData.id} | <@>`);
+  const [tempoEPunicaoTexto, setTempoEPunicaoTexto] = useState(`8. Tempo e Punição: ${punishment.find(pun => pun.id === parseInt(selectPunishment))?.pena || "Nenhum selecionado"}`);
 
   // Função para lidar com mudanças no texto do log
   const handleLogChange = (event) => {

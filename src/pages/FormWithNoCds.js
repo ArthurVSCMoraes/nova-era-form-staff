@@ -54,7 +54,7 @@ export default function FormWithNoCds() {
     };
 
     useEffect(() => {
-        setDenunciadoTexto(`5. Denunciado: ${id} | ${isOutsideDiscord ? "(FORA DO DC)" : "<@>"}`);
+        setDenunciadoTexto(` Denunciado: ${id} | ${isOutsideDiscord ? "(FORA DO DC)" : "<@>"}`);
     }, [id, isOutsideDiscord]);
 
     useEffect(() => {

@@ -36,8 +36,8 @@ export default function FormWithNoCds() {
         { id: 18, law: "41.4 - INVASÃO A DP", pena: "@ban" }
     ];
 
-    const [denunciadoTexto, setDenunciadoTexto] = useState(`5. Denunciado: ${id} | <@>`);
-    const [tempoEPunicaoTexto, setTempoEPunicaoTexto] = useState(`8. Tempo e Punição: ${punishment.find(pun => pun.id === parseInt(selectPunishment))?.pena || "Nenhum selecionado"}`);
+    const [denunciadoTexto, setDenunciadoTexto] = useState(` Denunciado: ${id} | <@>`);
+    const [tempoEPunicaoTexto, setTempoEPunicaoTexto] = useState(` Tempo e Punição: ${punishment.find(pun => pun.id === parseInt(selectPunishment))?.pena || "Nenhum selecionado"}`);
 
     const pRef = useRef(null);
 
@@ -60,9 +60,9 @@ export default function FormWithNoCds() {
     useEffect(() => {
         const selectedPunishment = punishment.find(pun => pun.id === parseInt(selectPunishment))?.pena || "Nenhum selecionado";
         if (isOutsideDiscord) {
-            setTempoEPunicaoTexto(`8. Tempo e Punição: @ban ATÉ SUBIR SUPORTE. APÓS ${selectedPunishment}`);
+            setTempoEPunicaoTexto(` Tempo e Punição: @ban ATÉ SUBIR SUPORTE. APÓS ${selectedPunishment}`);
         } else {
-            setTempoEPunicaoTexto(`8. Tempo e Punição: ${selectedPunishment}`);
+            setTempoEPunicaoTexto(` Tempo e Punição: ${selectedPunishment}`);
         }
     }, [selectPunishment, isOutsideDiscord]);
 
@@ -155,10 +155,10 @@ export default function FormWithNoCds() {
                                 `2.` Aprovado por:<br />
                                 `3.` Ticket Nmr: {ticketNumber}<br />
                                 `4.` Denunciante: {whistleblower} | @ <br />
-                                {denunciadoTexto}<br />
+                                `5.` {denunciadoTexto}<br />
                                 `6.` Julgamento: **APROVADO**<br />
                                 `7.` Motivo: {punishment.find(pun => pun.id === parseInt(selectPunishment))?.law || "Nenhum selecionado"}<br />
-                                {tempoEPunicaoTexto}<br />
+                                `8.` {tempoEPunicaoTexto}<br />
                                 `9.` Provas: {evidence}
                             </FormResult>
                             <ButtonToCopy onClick={copyToClipboard}>Copiar Formulário</ButtonToCopy>

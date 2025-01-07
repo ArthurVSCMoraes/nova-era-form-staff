@@ -1,11 +1,11 @@
 const staffResp = [
     { id: 1, name: "Gigi", discId: "942564213656797224" },
-    { id: 2, name: "Vulcano", discId: "660278234428080138" },
+    { id: 2, name: "Lamartine", discId: "1215784254303109191" },
     { id: 3, name: "Di`bel", discId: "571854287014068243" },
     { id: 4, name: "Andrezinho", discId: "548630874204143660",},
     { id: 5, name: "Miranha", discId: "740256657077960739",},
     { id: 6, name: "Santos", discId: "1159921981714599946",},
-    { id: 7, name: "Dubronx", discId: "1190517700288581653",},
+    { id: 7, name: "Sayory", discId: "735142446089895978",},
     { id: 8, name: "Laura", discId: "1166819494858084363",},
     { id: 9, name: "Araujo", discId: "918130354785771550",},
     { id: 10, name: "Yunna", discId: "500171348769898498",},

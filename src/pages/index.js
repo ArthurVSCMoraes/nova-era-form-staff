@@ -177,12 +177,12 @@ useEffect(() => {
         <VerticalLine />
         <FormAproveResult>
           <p ref={pRef}>
-            :duvidasnovaera:・**CDS**<br />
+            :discordnovaera:・**CDS**<br />
             **ASSASSINO:**<br /> <br />
             - CDS {parsedData.cdsAssassin}<br /> <br />
             **VÍTIMA:**<br /> <br />
             - CDS {parsedData.cdsVictim}<br /> <br />
-            :baixinha7_duvidas:・**JULGAMENTO:**<br />
+            :duvidasnovaera:・**JULGAMENTO:**<br />
             - {judgment} <br /> <br />
             `1.` Resolvido por: &lt;@{staffResp.find(staff => staff.id === parseInt(selectedStaff))?.discId || "Nenhum selecionado"}&gt;<br />
             `2.` Aprovado por:<br />

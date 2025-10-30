@@ -9,7 +9,7 @@ const staffResp = [
     { id: 8, name: "Laura", discId: "1166819494858084363",},
     { id: 9, name: "Araujo", discId: "918130354785771550",},
     { id: 10, name: "Yunna", discId: "500171348769898498",},
-    { id: 11, name: "Barão", discId: "1294681992843235469",},
+    { id: 11, name: "Vulcano", discId: "1294681992843235469",},
     { id: 12, name: "Agustinho", discId: "755164641633501474",},
     { id: 13, name: "NotFake", discId: "709086381883916308",},
     { id: 14, name: "Meruem", discId: "621834290673745920",},

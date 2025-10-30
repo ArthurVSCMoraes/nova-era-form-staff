@@ -76,7 +76,7 @@ export default function FormNegative() {
                     <VerticalLine />
                     <FormAproveResult>
                         <FormResult ref={pRef}>
-                            :baixinha7_duvidas:・**JULGAMENTO:**<br />
+                            :duvidasnovaera:・**JULGAMENTO:**<br />
                             - {judgment} <br /> <br />
                             `1.` Resolvido por: &lt;@{staffResp.find(staff => staff.id === parseInt(selectedStaff))?.discId || "Nenhum selecionado"}&gt;<br />
                             `2.` Aprovado por:<br />

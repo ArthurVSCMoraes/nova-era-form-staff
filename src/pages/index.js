@@ -177,7 +177,7 @@ useEffect(() => {
         <VerticalLine />
         <FormAproveResult>
           <p ref={pRef}>
-            :1129discord:・**CDS**<br />
+            :duvidasnovaera:・**CDS**<br />
             **ASSASSINO:**<br /> <br />
             - CDS {parsedData.cdsAssassin}<br /> <br />
             **VÍTIMA:**<br /> <br />

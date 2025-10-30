@@ -1,6 +1,6 @@
 export function parseLogText(logText) {
     // Define o padrão de expressão regular para extrair os valores
-    const regex = /\[ID\]: (\d+) - '[^']+'\s*\[MATOU O ID\]: (\d+) - '[^']+'\s*\[ARMA\]: '[^']+'\s*\[HASH\]: (-?\d+)\s*\[LOCAL ASSASSINO\]: ([-?\d.]+,[-?\d.]+,[-?\d.]+)\s*\[LOCAL VITIMA\]: ([-?\d.]+,[-?\d.]+,[-?\d.]+)\s*\[Data\]: \d{2}\/\d{2}\/\d{2}\s*\[Hora\]: \d{2}:\d{2}:\d{2}/;
+    const regex = /\[ID\]:\s*(\d+)\s*-\s*'[^']+'\s*\[MATOU O ID\]:\s*(\d+)\s*-\s*'[^']+'\s*\[ARMA\]:\s*'[^']+'\s*\[HASH\]:\s*(-?\d+)\s*\[SPAWN\]:\s*\S+\s*\[LOCAL ASSASSINO\]:\s*(-?\d+(?:\.\d+)?,-?\d+(?:\.\d+)?,-?\d+(?:\.\d+)?)\s*\[LOCAL VITIMA\]:\s*(-?\d+(?:\.\d+)?,-?\d+(?:\.\d+)?,-?\d+(?:\.\d+)?)\s*\[Data\]:\s*(\d{2}\/\d{2}\/\d{2})\s*\[Hora\]:\s*(\d{2}:\d{2}:\d{2})/;
 
     // Executa a expressão regular na string de entrada
     const matches = logText.match(regex);

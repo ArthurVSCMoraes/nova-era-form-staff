@@ -117,12 +117,12 @@ function CombatLog() {
                 <VerticalLine />
                 <FormAproveResult>
                     <p ref={pRef}>
-                        :1129discord:・**CDS**
+                        :discordnovaera:・**CDS**
                         <br />
                         **DISCONNECT:**
                         <br /> <br />- CDS {parsedData.cdsDisconnect}
                         <br /> <br />
-                        :baixinha7_duvidas:・**JULGAMENTO:**
+                        :duvidasnovaera:・**JULGAMENTO:**
                         <br />- {judgment} <br /> <br />
                         `1.` Resolvido por: &lt;@
                         {staffResp.find((staff) => staff.id === parseInt(selectedStaff))?.discId || "Nenhum selecionado"}

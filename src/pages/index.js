@@ -40,7 +40,7 @@ export default function Home() {
     { id: 7, law: "40.7 - ABUSO DE PODER", pena: "250 MESES + @adv" },
     { id: 8, law: "40.8 - ATIRAR DO MORRO", pena: "400 MESES + @adv" },
     { id: 9, law: "40.9 - RANDOM DEATHMATCH [RDM]", pena: "450 MESES + @adv" },
-    { id: 10, law: "40.10 - VEHICLE DEATHMATCH [VDM]", pena: "450 MESES + @adv" },
+    { id: 10, law: "40.10 - VEHICLE DEATHMATCH [VDM]", pena: "600 MESES + @adv" },
     { id: 11, law: "40.11 - LOOT INDEVIDO", pena: "600 MESES + @adv" },
     { id: 12, law: "40.12 - ANTI-RP", pena: "600 MESES + @adv" },
     { id: 13, law: "40.13 - META-GAMING", pena: "600 MESES + @adv" },

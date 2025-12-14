@@ -138,7 +138,7 @@ function CombatLog() {
                         <br />
                         `7.` Motivo: 40.17 - COMBAT LOGGING
                         <br />
-                        `8.` Tempo e Punição: {isOutsideDiscord ? "@ban ATÉ SUBIR SUPORTE. APÓS 3 DIAS + @adv" : "3 DIAS + @adv"}
+                        `8.` Tempo e Punição: {isOutsideDiscord ? "@ban ATÉ SUBIR SUPORTE. APÓS 1000 meses + @adv" : "1000 meses + @adv"}
                         <br />
                         `9.` Provas: {evidence}
                     </p>
